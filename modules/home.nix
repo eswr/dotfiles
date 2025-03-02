@@ -206,8 +206,8 @@
 
     git = {
       enable = true;
-      userName = "Alex Pearwin";
-      userEmail = "alex@pearwin.com";
+      userName = "Koka Easwarendra";
+      userEmail = "easwarendra.ece@gmail.com";
       aliases = {
         prettylog = "log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all";
       };
@@ -262,7 +262,7 @@
         init = {
           defaultBranch = "main";
         };
-        # Clone git repos with URLs like "gh:alexpearce/dotfiles"
+        # Clone git repos with URLs like "gh:eswr/dotfiles"
         url."git@github.com:" = {
           insteadOf = "gh:";
           pushInsteadOf = "gh:";

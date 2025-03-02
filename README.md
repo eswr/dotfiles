@@ -7,7 +7,7 @@ You should be able to run the `nix flake` command in a shell.
 Next, clone this repository. We'll use `~/code/dotfiles`.
 
 ```shell
-$ git clone git@github.com:alexpearce/dotfiles.git ~/code/dotfiles
+$ git clone git@github.com:eswr/nix-ubuntu.git ~/code/dotfiles
 ```
 
 The home-manager profile can then be built and activated:
