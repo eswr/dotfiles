@@ -1,30 +1,61 @@
 {
-  description = "My Ubuntu Nix";
+  description = "Home Manager configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
+
   outputs = {
+    self,
     nixpkgs,
+    nix-darwin,
     home-manager,
-    ...
   }: let
-    # system = "aarch64-linux"; If you are running on ARM powered computer
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    homeConfigurations = {
-      eswr = home-manager.lib.homeManagerConfiguration {
+    makeHomeManagerConfiguration = {
+      system,
+      username,
+      homeDirectory ? "/home/${username}",
+    }: let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+      home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+
         modules = [
-          ./home-manager/home.nix
+          ./modules/home.nix
+          {
+            home = {
+              inherit homeDirectory username;
+              stateVersion = "23.11";
+            };
+          }
         ];
       };
+  in {
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+    homeConfigurations.eswr = makeHomeManagerConfiguration {
+      system = "x86_64-linux";
+      username = "eswr";
+    };
+    homeConfigurations.eswr-ci = makeHomeManagerConfiguration {
+      system = "x86_64-linux";
+      username = "runner";
+      homeDirectory = "/home/runner";
+    };
+    darwinConfigurations.pearwin-laptop = nix-darwin.lib.darwinSystem {
+      system = "x86_64-linux";
+      modules = [
+        home-manager.darwinModules.home-manager
+        ./modules/macos.nix
+      ];
     };
   };
 }
-
