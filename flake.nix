@@ -50,8 +50,8 @@
       username = "runner";
       homeDirectory = "/home/runner";
     };
-    darwinConfigurations.pearwin-laptop = nix-darwin.lib.darwinSystem {
-      system = "x86_64-linux";
+    darwinConfigurations.eswr-laptop = nix-darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
       modules = [
         home-manager.darwinModules.home-manager
         ./modules/macos.nix
