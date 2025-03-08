@@ -19,6 +19,7 @@
       ripgrep
       tree
       tree-sitter
+      vlc
     ];
     sessionVariables = {
       EDITOR = "hx";
