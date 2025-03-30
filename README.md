@@ -7,19 +7,20 @@ You should be able to run the `nix flake` command in a shell.
 Next, clone this repository. We'll use `~/code/dotfiles`.
 
 ```shell
-$ git clone git@github.com:eswr/nix-ubuntu.git ~/code/dotfiles
+git clone git@github.com:eswr/dotfiles.git ~/code/dotfiles
 ```
 
 The home-manager profile can then be built and activated:
 
 ```shell
-$ nix run home-manager/master -- switch --flake ~/code/dotfiles#eswr
+nix run home-manager/master -- switch --flake ~/code/dotfiles#eswr
 ```
 
 To update dependencies:
 
 ```shell
-$ nix flake update ~/code/dotfiles
+nix flake update 
+# ~/code/dotfiles
 ```
 
 ```shell
@@ -60,3 +61,18 @@ Subsequent rebuilds, after configuration changes, are simpler.
 ```
 darwin-rebuild switch --flake (pwd)
 ```
+
+### Other Useful Commands
+
+```shell
+nix --version
+nix-store --gc
+
+nix-channel --update
+
+nix flake update
+nix-collect-garbage --delete-old
+nix-store --optimize
+
+```
+
