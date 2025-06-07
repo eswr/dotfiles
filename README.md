@@ -73,6 +73,19 @@ nix-channel --update
 nix flake update
 nix-collect-garbage --delete-old
 nix-store --optimize
+```
 
+Linux
+
+```shell
+nix run ~/code/dotfiles#homeConfigurations.eswr.activationPackage
+# or
+home-manager --flake ~/code/dotfiles#eswr switch
+```
+
+macOS
+
+```shell
+darwin-rebuild switch --flake ~/code/dotfiles#eswr-laptop
 ```
 
