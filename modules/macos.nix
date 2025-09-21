@@ -10,6 +10,11 @@ in {
   programs.zsh.enable = true;
   # Expose nix-provided paths to fish.
   programs.fish.enable = true;
+  programs.fish.shellAbbrs = {
+    hm = "home-manager --flake ~/code/dotfiles";
+    hms = "hm switch";
+    hme = "hm edit";
+  };
 
   home-manager = {
     useGlobalPkgs = true;
